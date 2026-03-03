@@ -43,14 +43,15 @@ body{background:linear-gradient(135deg,#F9F6F0,#F5F0E6);min-height:100vh;padding
 }
 .col-text{
   font-size:14px;line-height:1.6;margin-bottom:8px;
-  padding:10px;
-  border-radius:6px;
-  word-break:break-word;
-  transition:0.3s;
+  padding:10px;border-radius:6px;word-break:break-word;transition:0.3s;
 }
 .copy-btn{
   padding:6px 12px;background:#8A6E3C;color:#fff;
   border:none;border-radius:6px;cursor:pointer;font-size:12px;
+  transition:0.2s;
+}
+.copy-btn.copied{
+  background:#CCCCCC;color:#666666;cursor:default;
 }
 .copy-all-btn{
   display:block;margin:20px auto;padding:12px 24px;
@@ -89,7 +90,6 @@ function setMode(mode,btn){
   document.querySelectorAll(".mode-btn").forEach(b=>b.classList.remove("active"));
   btn.classList.add("active");
 
-  // 切换已有结果的底色
   document.querySelectorAll(".col-text").forEach(div=>{
     if(currentMode==="day"){
       div.style.background="#FFF7E6";
@@ -132,7 +132,6 @@ function generatePrompts(){
     let style=random(styles);
 
     let cn=`${lightCN}，${env}，${industry}门头设计，${mat}，门头宽度约${width}米，高度约${height}米，正立面平视视角，无透视畸变，无遮挡，${style}，木质立体字招牌，8K高清，商业写实效果图，施工级细节表现`;
-
     let en=`${lightEN}, ${env}, ${industry} storefront design, ${mat}, storefront width about ${width} meters, height about ${height} meters, front elevation eye-level view, no distortion, unobstructed display, ${style}, wooden 3D signage, 8K ultra HD commercial realistic render, construction-level detail`;
 
     allPrompts.push(`${i+1}. ${cn}\n${en}`);
@@ -141,11 +140,11 @@ function generatePrompts(){
     <div class="result-item">
       <div class="col">
         <div class="col-text" style="background:${currentMode==='day'?'#FFF7E6':'#1E2A3A'}; color:${currentMode==='day'?'#374151':'#E0E0E0'}">${i+1}. ${cn}</div>
-        <button class="copy-btn" onclick="copyText(\`${cn}\`)">复制中文</button>
+        <button class="copy-btn" onclick="copySingle(this,'${cn}')">复制中文</button>
       </div>
       <div class="col">
         <div class="col-text" style="background:${currentMode==='day'?'#FFF7E6':'#1E2A3A'}; color:${currentMode==='day'?'#374151':'#E0E0E0'}">${en}</div>
-        <button class="copy-btn" onclick="copyText(\`${en}\`)">Copy English</button>
+        <button class="copy-btn" onclick="copySingle(this,'${en}')">Copy English</button>
       </div>
     </div>
     `;
@@ -154,9 +153,18 @@ function generatePrompts(){
   wrap.innerHTML+=`<button class="copy-all-btn" onclick="copyAll()">一键复制全部中英文</button>`;
 }
 
-function copyText(text){navigator.clipboard.writeText(text);}
-function copyAll(){navigator.clipboard.writeText(allPrompts.join("\n\n")); alert("已复制全部中英文提示词");}
+function copySingle(btn,text){
+  if(btn.classList.contains('copied')) return;
+  navigator.clipboard.writeText(text).then(()=>{
+    btn.classList.add('copied');
+    btn.textContent="已复制";
+  });
+}
 
+function copyAll(){
+  navigator.clipboard.writeText(allPrompts.join("\n\n"));
+  alert("已复制全部中英文提示词");
+}
 </script>
 
 </body>
