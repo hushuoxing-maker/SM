@@ -2,103 +2,121 @@
 <html lang="zh-CN">
 <head>
 <meta charset="utf-8">
-<title>古月·实木/防_sensitive_words_腐木商业门头提示词生成器</title>
+<title>古月·实木/防腐木商业门头提示词生成器</title>
 
 <style>
 *{
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-  font-family: "هورmdatMicrosoft YaHei", sans-serif;
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+  font-family:"Microsoft YaHei",sans-serif;
 }
 body{
-  background: linear-gradient(135deg, #F9F6F0 0%, #F5F0E6 100%);
-  min-height: 100vh;
-  padding: 20px 0 60px;
+  background:linear-gradient(135deg,#F9F6F0,#F5F0E6);
+  min-height:100vh;
+  padding:20px 0 60px;
 }
 
-/* 顶部标题 */
+/* 顶部 */
 .header{
-  width: 100%;
-  background: linear-gradient(90deg, #8A6E3C, #A67C52);
-  color: #fff;
-  text-align: center;
-  padding: 40px 20px;
-  margin-bottom: 30px;
+  background:linear-gradient(90deg,# licensed,#A67C52);
+  color:#fff;
+  text-align:center;
+  padding:40px 20px;
+  margin-bottom:30px;
 }
-.header h1{ font-size: 26px; }
+.header h1{ font-size:26px; }
 
 /* 输入区域 */
 .input-wrap{
-  max-width: 900px;
-  margin: 0 auto 30px;
-  background: #fff;
-  padding: 30px;
-  border-radius: 16px;
-  box-shadow: 0 6px 20px rgba(0,0,0,0.05);
+  max-width:900px;
+  margin:0 auto 30px;
+  background:#fff;
+  padding:30px;
+  border-radius:16px;
+  box-shadow:0 6px 20px rgba(0,0,0,0.05);
 }
 .input-box{
-  width: 100%;
-  padding: 14px;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  margin-bottom: 20px;
-  font-size: 16px;
-}
-.gen-btn{
-  width: 100%;
-  padding: 14px;
-  background: #8A6E3C;
-  color: #fff;
-  border: none;
-  border-radius: 8px;
-  font-size: 16px;
-  cursor: pointer;
+  width:100%;
+  padding:14px;
+  border:1px solid #ddd;
+  border-radius:8px;
+  margin-bottom:15px;
+  font-size:16px;
 }
 
-/* 结果区域 */
+.mode-switch{
+  display:flex;
+  gap:10px;
+  margin-bottom:20px;
+}
+.mode-btn{
+  flex:1;
+  padding:10px;
+  border:none;
+  border-radius:8px;
+  cursor:pointer;
+  background:#ddd;
+}
+.mode-btn.active{
+  background:#8A6E3C;
+  color:#fff;
+}
+
+.gen-btn{
+  width:100%;
+  padding:14px;
+  background:#8A6E3C;
+  color:#fff;
+  border:none;
+  border-radius:8px;
+  font-size:16px;
+  cursor:pointer;
+}
+
+/* 结果 */
 .result-wrap{
-  max-width: 1100px;
-  margin: 0 auto;
+  max-width:1100px;
+  margin:0 auto;
 }
 .result-item{
-  display: flex;
-  gap: 15px;
-  margin-bottom: 15px;
+  display:flex;
+  gap:15px;
+  margin-bottom:15px;
 }
 .col{
-  flex: 1;
-  background: #fff;
-  padding: 15px;
-  border-radius: 10px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  flex:1;
+  background:#fff;
+  padding:15px;
+  border-radius:10px;
+  box-shadow:0 2px 8px rgba(0,0,0,0.05);
 }
 .col-text{
-  font-size: 14px;
-  line-height: 1.6;
-  margin-bottom: 8px;
+  font-size:14px;
+  line-height:1.6;
+  margin-bottom:8px;
 }
 .copy-btn{
-  padding: 6px 12px;
-  background: #8A6E3C;
-  color: #fff;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-  font-size: 12px;
+  padding:6px 12px;
+  background:#8A6E3C;
+  color:#fff;
+  border:none;
+  border-radius:6px;
+  cursor:pointer;
+  font-size:12px;
 }
 .copy-all-btn{
-  display: block;
-  margin: 20px auto;
-  padding: 12px 24px;
-  background: #8A6E3C;
-  color: #fff;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
+  display:block;
+  margin:20px auto;
+  padding:12px 24px;
+  background:#8A6E3C;
+  color:#fff;
+  border:none;
+  border-radius:8px;
+  cursor:pointer;
 }
 @media(max-width:768px){
-  .result-item{ flex-direction: column; }
+  .result-item{ flex-direction:column; }
 }
 </style>
 </head>
@@ -112,6 +130,12 @@ body{
 <div class="input-wrap">
   <input type="text" class="input-box" id="industryInput"
   placeholder="请输入行业类型，例如：茶馆、民宿、日式料理">
+
+  <div class="mode-switch">
+    <button class="mode-btn active" onclick="setMode('day',this)">白天模式</button>
+    <button class="mode-btn" onclick="setMode('night',this)">夜景模式</button>
+  </div>
+
   <button class="gen-btn" onclick="generatePrompts()">生成20组提示词</button>
 </div>
 
@@ -119,11 +143,19 @@ body{
 
 <script>
 
-let allPrompts = [];
+let currentMode="day";
+let allPrompts=[];
+
+function setMode(mode,btn){
+  currentMode=mode;
+  document.querySelectorAll(".mode-btn").forEach(b=>b.classList.remove("active"));
+  btn.classList.add("active");
+}
 
 function translateToEnglish(text){
   return text
   .replace("白天自然光","Daytime natural lighting")
+  .replace("夜景灯光氛围","Night lighting atmosphere")
   .replace("门头正立面","Front facade view")
   .replace("完整展示","Full storefront display")
   .replace("正面平视视角","Front eye-level angle")
@@ -134,14 +166,18 @@ function translateToEnglish(text){
 }
 
 function createPrompt(industry,index){
-  const variants=[
+  const styles=[
   "自然温润风格","中式雅致风格","日系简约风格","自然质感风格","中式禅意风格",
   "日系清新风格","自然质朴风格","中式大气风格","日系治愈风格","自然高级风格",
-  "中式简约风格","自然亲和风格","日系质感风格","中式温润风格","自然简约风格",
+  "中式简约风格",".Liberty风格","日系质感风格","中式温润风格","自然简约风格",
   "日系雅致风格","自然大气风格","中式质朴风格","日系高级风格","自然禅意风格"
   ];
 
-  return `白天自然光，门头正立面，完整展示，正面平视视角，无透视畸变，无遮挡，${industry}店铺门头，实木/防腐木门头，${variants[index]}，实木板材、格栅、木质字，洗墙灯+背发光字，8K高清，商业写实效果图，细节丰富，可直接施工参考`;
+  const lightText=currentMode==="day"
+  ?"白天自然光"
+  :"夜景灯光氛围，暖光洗墙灯，背发光字高亮";
+
+  return `${lightText}，门头正立面，完整展示，正面平视视角，无透视畸变，无遮挡，${industry}店铺门头，实木/防腐木门头，${styles[index]}，实木板材、格栅、木质字，8K高清，商业写实效果图，细节丰富，可直接施工参考`;
 }
 
 function copyText(text){
@@ -170,11 +206,11 @@ function generatePrompts(){
     <div class="result-item">
       <div class="col">
         <div class="col-text">${i+1}. ${cn}</div>
-        <button class="copy-btn" onclick="copyText(\`${cn}\`)">复制中文خول</button>
+        <button class="copy-btn" onclick="copyText(\`${cn}\`)">复制中文</button>
       </div>
       <div class="col">
         <div class="col-text">${en}</div>
-        <button class="copy-btn" onclick="copyText(\`${en}\`)">Copy English</button>
+        <button class="copy-btn" onclick奶头.copyText(\`${en}\`)">Copy English</button>
       </div>
     </div>
     `;
