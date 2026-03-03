@@ -2,129 +2,62 @@
 <html lang="zh-CN">
 <head>
 <meta charset="utf-8">
-<title>古月·实木/防腐木商业门头提示词生成器</title>
+<title>古月AI智能体·防腐木商业门头灵感库</title>
 
 <style>
-*{
-  box-sizing:border-box;
-  margin:0;
-  padding:0;
-  font-family:"Microsoft YaHei",sans-serif;
-}
-body{
-  background:linear-gradient(135deg,#F9F6F0,#F5F0E6);
-  min-height:100vh;
-  padding:20px 0 60px;
-}
+*{box-sizing:border-box;margin:0;padding:0;font-family:"Microsoft YaHei",sans-serif;}
+body{background:linear-gradient(135deg,#F9F6F0,#F5F0E6);min-height:100vh;padding:20px 0 60px;}
 
-/* 顶部 */
 .header{
-  background:linear-gradient(90deg,# licensed,#A67C52);
-  color:#fff;
-  text-align:center;
-  padding:40px 20px;
-  margin-bottom:30px;
+  background:linear-gradient(90deg,#8A6E3C,#A67C52);
+  color:#fff;text-align:center;padding:40px 20px;margin-bottom:30px;
 }
-.header h1{ font-size:26px; }
+.header h1{font-size:26px;}
 
-/* 输入区域 */
 .input-wrap{
-  max-width:900px;
-  margin:0 auto 30px;
-  background:#fff;
-  padding:30px;
-  border-radius:16px;
-  box-shadow:0 6px 20px rgba(0,0,0,0.05);
+  max-width:900px;margin:0 auto 30px;background:#fff;padding:30px;
+  border-radius:16px;box-shadow:0 6px 20px rgba(0,0,0,0.05);
 }
 .input-box{
-  width:100%;
-  padding:14px;
-  border:1px solid #ddd;
-  border-radius:8px;
-  margin-bottom:15px;
-  font-size:16px;
+  width:100%;padding:14px;border:1px solid #ddd;
+  border-radius:8px;margin-bottom:15px;font-size:16px;
 }
 
-.mode-switch{
-  display:flex;
-  gap:10px;
-  margin-bottom:20px;
-}
+.mode-switch{display:flex;gap:10px;margin-bottom:20px;}
 .mode-btn{
-  flex:1;
-  padding:10px;
-  border:none;
-  border-radius:8px;
-  cursor:pointer;
-  background:#ddd;
+  flex:1;padding:10px;border:none;border-radius:8px;
+  cursor:pointer;background:#ddd;
 }
-.mode-btn.active{
-  background:#8A6E3C;
-  color:#fff;
-}
+.mode-btn.active{background:#8A6E3C;color:#fff;}
 
 .gen-btn{
-  width:100%;
-  padding:14px;
-  background:#8A6E3C;
-  color:#fff;
-  border:none;
-  border-radius:8px;
-  font-size:16px;
-  cursor:pointer;
+  width:100%;padding:14px;background:#8A6E3C;color:#fff;
+  border:none;border-radius:8px;font-size:16px;cursor:pointer;
 }
 
-/* 结果 */
-.result-wrap{
-  max-width:1100px;
-  margin:0 auto;
-}
-.result-item{
-  display:flex;
-  gap:15px;
-  margin-bottom:15px;
-}
+.result-wrap{max-width:1100px;margin:0 auto;}
+.result-item{display:flex;gap:15px;margin-bottom:15px;}
 .col{
-  flex:1;
-  background:#fff;
-  padding:15px;
-  border-radius:10px;
+  flex:1;background:#fff;padding:15px;border-radius:10px;
   box-shadow:0 2px 8px rgba(0,0,0,0.05);
 }
-.col-text{
-  font-size:14px;
-  line-height:1.6;
-  margin-bottom:8px;
-}
+.col-text{font-size:14px;line-height:1.6;margin-bottom:8px;}
 .copy-btn{
-  padding:6px 12px;
-  background:#8A6E3C;
-  color:#fff;
-  border:none;
-  border-radius:6px;
-  cursor:pointer;
-  font-size:12px;
+  padding:6px 12px;background:#8A6E3C;color:#fff;
+  border:none;border-radius:6px;cursor:pointer;font-size:12px;
 }
 .copy-all-btn{
-  display:block;
-  margin:20px auto;
-  padding:12px 24px;
-  background:#8A6E3C;
-  color:#fff;
-  border:none;
-  border-radius:8px;
-  cursor:pointer;
+  display:block;margin:20px auto;padding:12px 24px;
+  background:#8A6E3C;color:#fff;border:none;border-radius:8px;cursor:pointer;
 }
-@media(max-width:768px){
-  .result-item{ flex-direction:column; }
-}
+@media(max-width:768px){.result-item{flex-direction:column;}}
 </style>
 </head>
 
 <body>
 
 <div class="header">
-  <h1>🪵 古月·实木/防腐木商业门头提示词生成器</h1>
+  <h1>🪵 古月AI智能体·防腐木商业门头灵感库</h1>
 </div>
 
 <div class="input-wrap">
@@ -136,7 +69,7 @@ body{
     <button class="mode-btn" onclick="setMode('night',this)">夜景模式</button>
   </div>
 
-  <button class="gen-btn" onclick="generatePrompts()">生成20组提示词</button>
+  <button class="gen-btn" onclick="generatePrompts()">生成20组防腐木门头灵感方案</button>
 </div>
 
 <div class="result-wrap" id="resultWrap"></div>
@@ -152,54 +85,44 @@ function setMode(mode,btn){
   btn.classList.add("active");
 }
 
-function translateToEnglish(text){
-  return text
-  .replace("白天自然光","Daytime natural lighting")
-  .replace("夜景灯光氛围","Night lighting atmosphere")
-  .replace("门头正立面","Front facade view")
-  .replace("完整展示","Full storefront display")
-  .replace("正面平视视角","Front eye-level angle")
-  .replace("无遮挡","No obstruction")
-  .replace("实木/防腐木门头","Solid wood storefront")
-  .replace("商业写实效果图","Commercial realistic render")
-  .replace("可直接施工参考","Construction-ready reference");
-}
-
-function createPrompt(industry,index){
-  const styles=[
-  "自然温润风格","中式雅致风格","日系简约风格","自然质感风格","中式禅意风格",
-  "日系清新风格","自然质朴风格","中式大气风格","日系治愈风格","自然高级风格",
-  "中式简约风格",".Liberty风格","日系质感风格","中式温润风格","自然简约风格",
-  "日系雅致风格","自然大气风格","中式质朴风格","日系高级风格","自然禅意风格"
-  ];
-
-  const lightText=currentMode==="day"
-  ?"白天自然光"
-  :"夜景灯光氛围，暖光洗墙灯，背发光字高亮";
-
-  return `${lightText}，门头正立面，完整展示，正面平视视角，无透视畸变，无遮挡，${industry}店铺门头，实木/防腐木门头，${styles[index]}，实木板材、格栅、木质字，8K高清，商业写实效果图，细节丰富，可直接施工参考`;
-}
-
-function copyText(text){
-  navigator.clipboard.writeText(text);
-}
-
-function copyAll(){
-  navigator.clipboard.writeText(allPrompts.join("\n\n"));
-  alert("已复制全部中英文提示词");
+function random(arr){
+  return arr[Math.floor(Math.random()*arr.length)];
 }
 
 function generatePrompts(){
+
   const industry=document.getElementById("industryInput").value.trim();
-  if(!industry){ alert("请输入行业类型"); return; }
+  if(!industry){alert("请输入行业类型");return;}
 
   const wrap=document.getElementById("resultWrap");
   wrap.innerHTML="";
   allPrompts=[];
 
+  const environments=["街边独立店铺","商业街区门头","社区沿街商铺","旅游景区店铺","商场外摆门面"];
+  const materials=["防腐木横向拼板","防腐木竖向格栅","碳化深色防腐木","原木色防腐木饰面","木格栅与石材结合结构"];
+  const styles=["自然温润风格","中式雅致风格","日系简约风格","现代自然风格","新中式融合风格","自然高级风格"];
+
   for(let i=0;i<20;i++){
-    const cn=createPrompt(industry,i);
-    const en=translateToEnglish(cn);
+
+    let width=(Math.random()*4+4).toFixed(1);
+    let height=(Math.random()*1.5+3).toFixed(1);
+
+    let lightCN=currentMode==="day"
+    ?"白天自然光"
+    :"夜景灯光氛围，暖光洗墙灯，隐藏灯带轮廓";
+
+    let lightEN=currentMode==="day"
+    ?"Daytime natural lighting"
+    :"Night lighting atmosphere with warm wall washer lights and concealed LED strips";
+
+    let env=random(environments);
+    let mat=random(materials);
+    let style=random(styles);
+
+    let cn=`${lightCN}，${env}，${industry}门头设计，${mat}，门头宽度约${width}米，高度约${height}米，正立面平视视角，无透视畸变，无遮挡，${style}，木质立体字招牌，8K高清，商业写实效果图，施工级细节表现`;
+
+    let en=`${lightEN}, ${env}, ${industry} storefront design, ${mat}, storefront width about ${width} meters, height about ${height} meters, front elevation eye-level view, no distortion, unobstructed display, ${style}, wooden 3D signage, 8K ultra HD commercial realistic render, construction-level detail`;
+
     allPrompts.push(`${i+1}. ${cn}\n${en}`);
 
     wrap.innerHTML+=`
@@ -210,13 +133,22 @@ function generatePrompts(){
       </div>
       <div class="col">
         <div class="col-text">${en}</div>
-        <button class="copy-btn" onclick奶头.copyText(\`${en}\`)">Copy English</button>
+        <button class="copy-btn" onclick="copyText(\`${en}\`)">Copy English</button>
       </div>
     </div>
     `;
   }
 
   wrap.innerHTML+=`<button class="copy-all-btn" onclick="copyAll()">一键复制全部中英文</button>`;
+}
+
+function copyText(text){
+  navigator.clipboard.writeText(text);
+}
+
+function copyAll(){
+  navigator.clipboard.writeText(allPrompts.join("\n\n"));
+  alert("已复制全部中英文提示词");
 }
 
 </script>
