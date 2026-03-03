@@ -41,7 +41,13 @@ body{background:linear-gradient(135deg,#F9F6F0,#F5F0E6);min-height:100vh;padding
   flex:1;background:#fff;padding:15px;border-radius:10px;
   box-shadow:0 2px 8px rgba(0,0,0,0.05);
 }
-.col-text{font-size:14px;line-height:1.6;margin-bottom:8px;}
+.col-text{
+  font-size:14px;line-height:1.6;margin-bottom:8px;
+  padding:10px;
+  border-radius:6px;
+  word-break:break-word;
+  transition:0.3s;
+}
 .copy-btn{
   padding:6px 12px;background:#8A6E3C;color:#fff;
   border:none;border-radius:6px;cursor:pointer;font-size:12px;
@@ -75,7 +81,6 @@ body{background:linear-gradient(135deg,#F9F6F0,#F5F0E6);min-height:100vh;padding
 <div class="result-wrap" id="resultWrap"></div>
 
 <script>
-
 let currentMode="day";
 let allPrompts=[];
 
@@ -83,14 +88,22 @@ function setMode(mode,btn){
   currentMode=mode;
   document.querySelectorAll(".mode-btn").forEach(b=>b.classList.remove("active"));
   btn.classList.add("active");
+
+  // 切换已有结果的底色
+  document.querySelectorAll(".col-text").forEach(div=>{
+    if(currentMode==="day"){
+      div.style.background="#FFF7E6";
+      div.style.color="#374151";
+    } else {
+      div.style.background="#1E2A3A";
+      div.style.color="#E0E0E0";
+    }
+  });
 }
 
-function random(arr){
-  return arr[Math.floor(Math.random()*arr.length)];
-}
+function random(arr){return arr[Math.floor(Math.random()*arr.length)];}
 
 function generatePrompts(){
-
   const industry=document.getElementById("industryInput").value.trim();
   if(!industry){alert("请输入行业类型");return;}
 
@@ -103,7 +116,6 @@ function generatePrompts(){
   const styles=["自然温润风格","中式雅致风格","日系简约风格","现代自然风格","新中式融合风格","自然高级风格"];
 
   for(let i=0;i<20;i++){
-
     let width=(Math.random()*4+4).toFixed(1);
     let height=(Math.random()*1.5+3).toFixed(1);
 
@@ -128,11 +140,11 @@ function generatePrompts(){
     wrap.innerHTML+=`
     <div class="result-item">
       <div class="col">
-        <div class="col-text">${i+1}. ${cn}</div>
+        <div class="col-text" style="background:${currentMode==='day'?'#FFF7E6':'#1E2A3A'}; color:${currentMode==='day'?'#374151':'#E0E0E0'}">${i+1}. ${cn}</div>
         <button class="copy-btn" onclick="copyText(\`${cn}\`)">复制中文</button>
       </div>
       <div class="col">
-        <div class="col-text">${en}</div>
+        <div class="col-text" style="background:${currentMode==='day'?'#FFF7E6':'#1E2A3A'}; color:${currentMode==='day'?'#374151':'#E0E0E0'}">${en}</div>
         <button class="copy-btn" onclick="copyText(\`${en}\`)">Copy English</button>
       </div>
     </div>
@@ -142,14 +154,8 @@ function generatePrompts(){
   wrap.innerHTML+=`<button class="copy-all-btn" onclick="copyAll()">一键复制全部中英文</button>`;
 }
 
-function copyText(text){
-  navigator.clipboard.writeText(text);
-}
-
-function copyAll(){
-  navigator.clipboard.writeText(allPrompts.join("\n\n"));
-  alert("已复制全部中英文提示词");
-}
+function copyText(text){navigator.clipboard.writeText(text);}
+function copyAll(){navigator.clipboard.writeText(allPrompts.join("\n\n")); alert("已复制全部中英文提示词");}
 
 </script>
 
