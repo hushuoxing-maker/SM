@@ -1,170 +1,283 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-<meta charset="utf-8">
-<title>古月AI智能体·防腐木商业门头灵感库</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>实木商业门头设计AI生成器 · 古月AI</title>
 
 <style>
-*{box-sizing:border-box;margin:0;padding:0;font-family:"Microsoft YaHei",sans-serif;}
-body{background:linear-gradient(135deg,#F9F6F0,#F5F0E6);min-height:100vh;padding:20px 0 60px;}
 
-.header{
-  background:linear-gradient(90deg,#8A6E3C,#A67C52);
-  color:#fff;text-align:center;padding:40px 20px;margin-bottom:30px;
-}
-.header h1{font-size:26px;}
-
-.input-wrap{
-  max-width:900px;margin:0 auto 30px;background:#fff;padding:30px;
-  border-radius:16px;box-shadow:0 6px 20px rgba(0,0,0,0.05);
-}
-.input-box{
-  width:100%;padding:14px;border:1px solid #ddd;
-  border-radius:8px;margin-bottom:15px;font-size:16px;
+*{
+margin:0;边距:0;
+padding:0;内边距:0;
+box-sizing:border-box;
+font-family:"Microsoft YaHei",sans-serif;
 }
 
-.mode-switch{display:flex;gap:10px;margin-bottom:20px;}
-.mode-btn{
-  flex:1;padding:10px;border:none;border-radius:8px;
-  cursor:pointer;background:#ddd;
-}
-.mode-btn.active{background:#8A6E3C;color:#fff;}
-
-.gen-btn{
-  width:100%;padding:14px;background:#8A6E3C;color:#fff;
-  border:none;border-radius:8px;font-size:16px;cursor:pointer;
+body{
+background:linear-gradient(135deg,#2e1f13,#5a3c2e,#8b5e3c,#1a120b);背景:线性渐变(135度,#2e1f13,#5a3c2e,#8b5e3c,#1a120b);背景:linear-gradient(135deg,#2e1f13,#5a3c2e,#8b5e3c,#1a120b);背景:线性渐变(135度,#2e1f13,#5a3c2e,#8b5e3c,#1a120b);背景:linear-gradient(135deg,#2e1f13,#5a3c2e,#8b5e3c,#1a120b);背景:线性渐变(135度,#2e1f13,#5a3c2e,#8b5e3c,#1a120b);背景:linear-gradient(135deg,#2e1f13,#5a3c2e,#8b5e3c,#1a120b);背景:线性渐变(135度,#2e1f13,#5a3c2e,#8b5e3c,#1a120b);背景:linear-gradient(135deg,#2e1f13,#5a3c2e,#8b5e3c,#1a120b);背景:线性渐变(135度,#2e1f13,#5a3c2e,#8b5e3c,#1a120b);背景:linear-gradient(135deg,#2e1f13,#5a3c2e,#8b5e3c,#1a120b);背景:线性渐变(135度,#2e1f13,#5a3c2e,#8b5e3c,#1a120b);背景:linear-gradient(135deg,#2e1f13,#5a3c2e,#8b5e3c,#1a120b);背景:线性渐变(135度,#2e1f13,#5a3c2e,#8b5e3c,#1a120b);背景:linear-gradient(135deg,#2e1f13,#5a3c2e,#8b5e3c,#1a120b);背景:线性渐变(135度,#2e1f13,#5a3c2e,#8b5e3c,#1a120b);背景:linear-gradient(135deg,#2e1f13,#5a3c2e,#8b5e3c,#1a120b);背景:线性渐变(135度,#2e1f13,#5a3c2e,#8b5e3c,#1a120b);背景:linear-gradient(135deg,#2e1f13,#5a3c2e,#8b5e3c,#1a120b);背景:线性渐变(135度,#2e1f13,#5a3c2e,#8b5e3c,#1a120b);背景:linear-gradient(135deg,#2e1f13,#5a3c2e,#8b5e3c,#1a120b);背景:线性渐变(135度,#2e1f13,#5a3c2e,#8b5e3c,#1a120b);背景:linear-gradient(135deg,#2e1f13,#5a3c2e,#8b5e3c,#1a120b);背景:线性渐变(135度,#2e1f13,#5a3c2e,#8b5e3c,#1a120b);背景:linear-gradient(135deg,#2e1f13,#5a3c2e,#8b5e3c,#1a120b);背景:线性渐变(135度,#2e1f13,#5a3c2e,#8b5e3c,#1a120b);背景:linear-gradient(135deg,#2e1f13,#5a3c2e,#8b5e3c,#1a120b);背景:线性渐变(135度,#2e1f13,#5a3c2e,#8b5e3c,#1a120b);背景:linear-gradient(135deg,#2e1f13,#5a3c2e,#8b5e3c,#1a120b);背景:线性渐变(135度,#2e1f13,#5a3c2e,#8b5e3c,#1a120b);背景:linear-gradient(135deg,#2e1f13,#5a3c2e,#8b5e3c,#1a120b);背景:线性渐变(135度,#2e1f13,#5a3c2e,#8b5e3c,#1a120b);
+background-size:400% 400%;背景尺寸:400% 400%;背景尺寸:400% 400%;背景尺寸:400% 400%;背景尺寸:400% 400%;背景尺寸:400% 400%;背景尺寸:400% 400%;背景尺寸:400% 400%;背景尺寸:400% 400%;背景尺寸:400% 400%;背景尺寸:400% 400%;背景尺寸:400% 400%;背景尺寸:400% 400%;背景尺寸:400% 400%;背景尺寸:400% 400%;背景尺寸:400% 400%;
+animation:bg 16s infinite;动画:背景 16秒 无限;动画:背景 16秒 无限;动画:背景 16秒 无限;动画:背景 16秒 无限;动画:背景 16秒 无限;动画:背景 16秒 无限;动画:背景 16秒 无限;
+min-height:100vh;最小高度:100vh;
+padding:60px;内边距:60像素;内边距:60像素;内边距:60像素;
+color:#fff;颜色:#fff;
 }
 
-.result-wrap{max-width:1100px;margin:0 auto;}
-.result-item{display:flex;gap:15px;margin-bottom:15px;}
-.col{
-  flex:1;background:#fff;padding:15px;border-radius:10px;
-  box-shadow:0 2px 8px rgba(0,0,0,0.05);
+@keyframes bg{
+0%{background-position:0% 50%}0%{背景位置:0% 50%}
+50%{background-position:100% 50%}50%{背景位置:100% 50%}
+100%{background-position:0% 50%}
 }
-.col-text{
-  font-size:14px;line-height:1.6;margin-bottom:8px;
-  padding:10px;border-radius:6px;word-break:break-word;transition:0.3s;
+
+.container{
+max-width:1200px;
+margin:auto;
 }
-.copy-btn{
-  padding:6px 12px;background:#8A6E3C;color:#fff;
-  border:none;border-radius:6px;cursor:pointer;font-size:12px;
-  transition:0.2s;
+
+h1{
+text-align:center;
+font-size:36px;
+margin-bottom:40px;
+background:linear-gradient(90deg,#e6c79c,#ffffff,#e6c79c);背景:线性渐变(90度,#e6c79c,#ffffff,#e6c79c);背景:linear-gradient(90deg,#e6c79c,#ffffff,#e6c79c);背景:线性渐变(90度,#e6c79c,#ffffff,#e6c79c);
+-webkit-background-clip:text;-webkit-背景裁剪:文本;
+color:transparent;颜色:透明;
 }
-.copy-btn.copied{
-  background:#CCCCCC;color:#666666;cursor:default;
+
+.card{.卡片{
+background:rgba(0,0,0,0.45);背景:rgba(0,0,0,0.45);
+backdrop-filter:blur(15px);背景模糊:模糊(15px);
+padding:30px;
+border-radius:16px;
+box-shadow:0 10px 40px rgba(0,0,0,0.6);
+margin-bottom:30px;
 }
-.copy-all-btn{
-  display:block;margin:20px auto;padding:12px 24px;
-  background:#8A6E3C;color:#fff;border:none;border-radius:8px;cursor:pointer;
+
+input{输入{
+width:100%;
+padding:14px;
+margin-top:10px;
+margin-bottom:20px;
+border-radius:10px;
+border:1px solid #caa472;
+background:rgba(0,0,0,0.4);
+color:white;
+font-size:16px;
 }
-@media(max-width:768px){.result-item{flex-direction:column;}}
-</style>
+
+input:focus{
+outline:none;
+box-shadow:0 0 10px rgba(202,164,114,0.8);
+}
+
+button{
+width:100%;
+padding:14px;
+border:none;
+border-radius:10px;
+background:linear-gradient(135deg,#caa472,#e6c79c);
+font-weight:700;
+font-size:16px;
+cursor:pointer;
+}
+
+.results{
+display:grid;
+grid-template-columns:repeat(auto-fill,minmax(420px,1fr));
+gap:20px;
+}
+
+.promptCard{
+background:rgba(0,0,0,0.65);
+padding:22px;
+border-radius:14px;
+border-left:4px solid #caa472;
+box-shadow:0 6px 25px rgba(0,0,0,0.5);
+}
+
+.promptTitle{
+font-size:18px;
+margin-bottom:10px;
+color:#e6c79c;
+}
+
+.promptText{
+white-space:pre-wrap;
+font-size:14px;
+line-height:1.6;
+}
+
+.copyBtn{
+margin-top:15px;
+background:linear-gradient(135deg,#caa472,#e6c79c);
+border:none;边框:无;
+padding:8px 16px;
+border-radius:8px;
+cursor:pointer;
+}
+
+.copyBtn.copied{
+background:#555;
+color:white;颜色:白色;
+}
+
+</style></样式>
 </head>
 
 <body>
 
-<div class="header">
-  <h1>🪵 古月AI智能体·防腐木商业门头灵感库</h1>
+<div class="container">
+
+<h1>实木商业门头设计AI智能体</h1>
+
+<div class="card">
+
+<input id="brand" placeholder="输入：品牌店名 + 主营品类 + 醒目标语（例如：山野茶舍 · 新中式茶饮 · 山野好茶）">
+
+<button onclick="generate()">生成20组门头提示词</button>
+
 </div>
 
-<div class="input-wrap">
-  <input type="text" class="input-box" id="industryInput"
-  placeholder="请输入行业类型，例如：茶馆、民宿、日式料理">
+<div id="results" class="results"></div>
 
-  <div class="mode-switch">
-    <button class="mode-btn active" onclick="setMode('day',this)">白天模式</button>
-    <button class="mode-btn" onclick="setMode('night',this)">夜景模式</button>
-  </div>
-
-  <button class="gen-btn" onclick="generatePrompts()">生成20组防腐木门头灵感方案</button>
 </div>
-
-<div class="result-wrap" id="resultWrap"></div>
 
 <script>
-let currentMode="day";
-let allPrompts=[];
 
-function setMode(mode,btn){
-  currentMode=mode;
-  document.querySelectorAll(".mode-btn").forEach(b=>b.classList.remove("active"));
-  btn.classList.add("active");
-
-  document.querySelectorAll(".col-text").forEach(div=>{
-    if(currentMode==="day"){
-      div.style.background="#FFF7E6";
-      div.style.color="#374151";
-    } else {
-      div.style.background="#1E2A3A";
-      div.style.color="#E0E0E0";
-    }
-  });
+function rand(arr){函数 rand(arr){函数 rand(arr){函数rand(arr){
+return arr[Math.floor(Math.random()*arr.length)]返回 arr[Math.floor(Math.random()*arr.length)]
 }
 
-function random(arr){return arr[Math.floor(Math.random()*arr.length)];}
+let layouts=[
+"横向整幅实木门头结构",
+"实木格栅分层门头结构",
+"极简木质横梁门头结构",
+"日系木格栅门头结构",
+"中式木框门头结构",
+"实木线性结构门头",
+"深色实木板整幅门头",
+"原木色极简门头结构"
+]
 
-function generatePrompts(){
-  const industry=document.getElementById("industryInput").value.trim();
-  if(!industry){alert("请输入行业类型");return;}
+let woods=[让 树林=[
+"原木色防腐木板材",
+"深胡桃色实木板材",
+"碳化防腐木板材",
+"浅色原木板材",
+"深色实木格栅板",
+"自然纹理防腐木板"
+]
 
-  const wrap=document.getElementById("resultWrap");
-  wrap.innerHTML="";
-  allPrompts=[];
+let slogans=[
+"自然生活方式",
+"匠心品质",
+"慢享生活",
+"东方生活美学",
+"自然之味",
+"品质优选",
+"手作好味道",
+"匠心好物",
+"山野自然",
+"生活之选",
+"每日新鲜",
+"温暖生活"
+]
 
-  const environments=["街边独立店铺","商业街区门头","社区沿街商铺","旅游景区店铺","商场外摆门面"];
-  const materials=["防腐木横向拼板","防腐木竖向格栅","碳化深色防腐木","原木色防腐木饰面","木格栅与石材结合结构"];
-  const styles=["自然温润风格","中式雅致风格","日系简约风格","现代自然风格","新中式融合风格","自然高级风格"];
+function generate(){
 
-  for(let i=0;i<20;i++){
-    let width=(Math.random()*4+4).toFixed(1);
-    let height=(Math.random()*1.5+3).toFixed(1);
+let brand=document.getElementById("brand").value.trim()
 
-    let lightCN=currentMode==="day"
-    ?"白天自然光"
-    :"夜景灯光氛围，暖光洗墙灯，隐藏灯带轮廓";
-
-    let lightEN=currentMode==="day"
-    ?"Daytime natural lighting"
-    :"Night lighting atmosphere with warm wall washer lights and concealed LED strips";
-
-    let env=random(environments);
-    let mat=random(materials);
-    let style=random(styles);
-
-    let cn=`${lightCN}，${env}，${industry}门头设计，${mat}，门头宽度约${width}米，高度约${height}米，正立面平视视角，无透视畸变，无遮挡，${style}，木质立体字招牌，8K高清，商业写实效果图，施工级细节表现`;
-    let en=`${lightEN}, ${env}, ${industry} storefront design, ${mat}, storefront width about ${width} meters, height about ${height} meters, front elevation eye-level view, no distortion, unobstructed display, ${style}, wooden 3D signage, 8K ultra HD commercial realistic render, construction-level detail`;
-
-    allPrompts.push(`${i+1}. ${cn}\n${en}`);
-
-    wrap.innerHTML+=`
-    <div class="result-item">
-      <div class="col">
-        <div class="col-text" style="background:${currentMode==='day'?'#FFF7E6':'#1E2A3A'}; color:${currentMode==='day'?'#374151':'#E0E0E0'}">${i+1}. ${cn}</div>
-        <button class="copy-btn" onclick="copySingle(this,'${cn}')">复制中文</button>
-      </div>
-      <div class="col">
-        <div class="col-text" style="background:${currentMode==='day'?'#FFF7E6':'#1E2A3A'}; color:${currentMode==='day'?'#374151':'#E0E0E0'}">${en}</div>
-        <button class="copy-btn" onclick="copySingle(this,'${en}')">Copy English</button>
-      </div>
-    </div>
-    `;
-  }
-
-  wrap.innerHTML+=`<button class="copy-all-btn" onclick="copyAll()">一键复制全部中英文</button>`;
+if(!brand){
+alert("请输入品牌店名 + 主营品类 + 标语")
+return
 }
 
-function copySingle(btn,text){
-  if(btn.classList.contains('copied')) return;
-  navigator.clipboard.writeText(text).then(()=>{
-    btn.classList.add('copied');
-    btn.textContent="已复制";
-  });
+let container=document.getElementById("results")
+container.innerHTML=""
+
+for(let i=1;i<=20;i++){
+
+let text=`
+
+白天自然光环境，门头正立面完整展示，正面平视视角，无透视畸变，无任何遮挡
+
+${brand}
+
+实木商业门头设计
+
+门头结构：
+${rand(layouts)}
+
+木材材质：
+${rand(woods)}，真实木纹理质感
+
+文字设计：
+品牌店名 + 主营品类 + 标语：${rand(slogans)}
+书法字体或简约字体设计
+
+材质组合：
+实木板材
+实木格栅结构
+木质字
+不锈钢字
+亚克力字
+钛金字
+金属包边
+
+灯光设计：
+日间暖光洗墙灯
+背发光字
+局部暖光照明
+
+风格氛围：
+自然温润质感
+中式与日系融合风格
+商业门头真实施工结构
+
+环境：
+真实商业街门头场景
+
+画质：
+8K高清
+商业写实效果图
+细节丰富
+色彩自然
+真实施工参考
+`
+
+let card=document.createElement("div")
+card.className="promptCard"
+
+card.innerHTML=`
+
+<div class="promptTitle">提示词 #${i}</div>
+<div class="promptText">${text}</div>
+<button class="copyBtn">复制提示词</button>
+
+`
+
+let btn=card.querySelector("button")
+
+btn.onclick=function(){
+
+navigator.clipboard.writeText(text)
+
+btn.innerText="已复制"
+
+btn.classList.add("copied")
+
+setTimeout(()=>{
+btn.innerText="复制提示词"
+btn.classList.remove("copied")
+},3000)
+
 }
 
-function copyAll(){
-  navigator.clipboard.writeText(allPrompts.join("\n\n"));
-  alert("已复制全部中英文提示词");
+container.appendChild(card)
+
 }
+
+}
+
 </script>
 
 </body>
